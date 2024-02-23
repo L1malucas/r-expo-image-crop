@@ -4,21 +4,24 @@
   "description": "Crop, rotate and flip images without detach your expo project!",
   "main": "index.js",
   "dependencies": {
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.11.1",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jest": "^22.1.2",
-    "eslint-plugin-jsx-a11y": "^6.1.2",
-    "eslint-plugin-react": "^7.12.0",
+    "@types/react-native-vector-icons": "^6.4.18",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.56.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jest": "^27.9.0",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-react": "^7.33.2",
+    "expo-image-manipulator": "^11.8.0",
     "prop-types": "^15.6.2",
-    "react-native-animatable": "^1.3.0",
-    "react-native-auto-height-image": "^1.0.5",
+    "react-native": "^0.73.4",
+    "react-native-animatable": "^1.4.0",
+    "react-native-auto-height-image": "^3.2.4",
     "react-native-iphone-x-helper": "^1.2.1",
-    "react-native-vector-icons": "^6.6.0"
+    "react-native-vector-icons": "^10.0.3"
   },
   "devDependencies": {
-    "babel-preset-expo": "^5.0.0"
+    "babel-preset-expo": "^10.0.1"
   },
   "private": false,
   "keywords": [

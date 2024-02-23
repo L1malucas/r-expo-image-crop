@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+/* eslint-disable */
 import {
     Dimensions,
     Image,
@@ -8,8 +8,8 @@ import {
     Text,
     SafeAreaView,
     TouchableOpacity,
-    YellowBox,
 } from 'react-native'
+import React, { Component } from 'react'
 import * as ImageManipulator from 'expo-image-manipulator'
 import * as FileSystem from 'expo-file-system'
 import PropTypes from 'prop-types'
@@ -34,7 +34,6 @@ class ExpoImageManipulator extends Component {
         this.state = {
             cropMode: false,
             processing: false,
-            zoomScale: 1,
         }
 
         this.scrollOffset = 0
@@ -226,8 +225,7 @@ class ExpoImageManipulator extends Component {
         const { saveOptions } = this.props
         const manipResult = await ImageManipulator.manipulateAsync(uri, [{
             flip: orientation === 'vertical' ? ImageManipulator.FlipType.Vertical : ImageManipulator.FlipType.Horizontal,
-        }],
-        saveOptions)
+        }], saveOptions)
         return manipResult
     };
 
@@ -262,30 +260,13 @@ class ExpoImageManipulator extends Component {
         }
     };
 
-    // calculateMaxSizes = (event) => {
-    //     const { fixedSquareAspect } = this.state
-    //     let w1 = event.nativeEvent.layout.width || 100
-    //     let h1 = event.nativeEvent.layout.height || 100
-    //     if (fixedSquareAspect) {
-    //         if (w1 < h1) h1 = w1
-    //         else w1 = h1
-    //     }
-    //     this.maxSizes.width = w1
-    //     this.maxSizes.height = h1
-    // };
 
     // eslint-disable-next-line camelcase
     async UNSAFE_componentWillReceiveProps() {
         await this.onConvertImageToEditableSize()
     }
 
-    zoomImage() {
-        // this.refs.imageScrollView.zoomScale = 5
-        // this.setState({width: width})
-        // this.setState({zoomScale: 5})
-
-        // this.setState(curHeight)
-    }
+    zoomImage() { }
 
     render() {
         const {
@@ -451,8 +432,8 @@ class ExpoImageManipulator extends Component {
                         scrollEventThrottle={16}
                         scrollEnabled={false}
                         pinchGestureEnabled={false}
-                        // scrollEnabled={cropMode ? false : true}
-                        // pinchGestureEnabled={cropMode ? false : pinchGestureEnabled}
+                    // scrollEnabled={cropMode ? false : true}
+                    // pinchGestureEnabled={cropMode ? false : pinchGestureEnabled}
                     >
                         <AutoHeightImage
                             style={{ backgroundColor: 'black' }}
@@ -460,7 +441,7 @@ class ExpoImageManipulator extends Component {
                             resizeMode={imageRatio >= 1 ? 'contain' : 'contain'}
                             width={width}
                             height={originalHeight}
-                            // onLayout={this.calculateMaxSizes}
+                        // onLayout={this.calculateMaxSizes}
                         />
                         {!!cropMode && (
                             <ImageCropOverlay
@@ -477,7 +458,7 @@ class ExpoImageManipulator extends Component {
                                 minHeight={(fixedMask && fixedMask.height) || 100}
                                 minWidth={(fixedMask && fixedMask.width) || 100}
                                 borderColor={borderColor}
-                                ratio={ratio || {ratio: {height: null, width: null, }}}
+                                ratio={ratio || { ratio: { height: null, width: null } }}
                             />
                         )
                         }
@@ -494,10 +475,10 @@ ExpoImageManipulator.defaultProps = {
     onPictureChoosed: ({ uri, base64 }) => console.log('URI:', uri, base64),
     borderColor: '#a4a4a4',
     btnTexts: {
-        crop: 'Crop',
-        rotate: 'Rotate',
-        done: 'Done',
-        processing: 'Processing',
+        crop: 'Cortar',
+        rotate: 'Girar',
+        done: 'Salvar',
+        processing: 'Processando...',
     },
     saveOptions: {
         compress: 1,
@@ -516,5 +497,4 @@ ExpoImageManipulator.propTypes = {
     saveOptions: PropTypes.object,
     photo: PropTypes.object.isRequired,
     onToggleModal: PropTypes.func.isRequired,
-    ratio: PropTypes.object,
 }

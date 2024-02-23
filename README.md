@@ -1,42 +1,23 @@
-<h1 align="center">Expo image manipulator</h1>
-<p align="center">Multi platform 🚀</p>
+# Expo image manipulator
 
-<p align="center">
-   <img width="250" src="./demo.gif"/>
-   <br/>
-   <br/>
-   <br/>
-   <br/>
-   <a href="https://github.com/brunon80/expo-image-crop"><img alt="npm version" src="https://badge.fury.io/js/expo-image-crop.svg"/>
-   <a href="https://github.com/brunon80/expo-image-crop"><img alt="npm version" src="https://img.shields.io/badge/platform-ios%2Fandroid-blue.svg"/>
-   <a href="https://github.com/brunon80/expo-image-crop"><img alt="npm version" src="https://img.shields.io/badge/license-MIT-lightgrey.svg"/>
-   <p align="center">
-   
-  <a href="https://exp.host/@koruja/expo-image-crop">Open on your device!</a>
-</p>
-</a>
-</p>
+Multi platform 🚀
 
-## Crop and rotate image without detach your expo project!
-## `Expo.ImageManipulator` is only an API, so it does not contain a UI. You will have to build your own UI on top of it, or choose to detach your project and use third party linked packages, which is not as good because a pure javascript Expo project is marvelous!
+[![npm version](https://badge.fury.io/js/expo-image-crop.svg)](https://github.com/brunon80/expo-image-crop)
+[![platform-ios/android](https://img.shields.io/badge/platform-ios%2Fandroid-blue.svg)](https://github.com/brunon80/expo-image-crop)
+[![license-MIT](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/brunon80/expo-image-crop)
 
-[PRs are welcome...](https://github.com/brunon80/expo-image-crop/pulls)
+<a href="https://exp.host/@koruja/expo-image-crop">Abra em seu dispositivo!</a>
 
->No more flickering while resizing image mask!
+[PRs são bem-vindos...](https://github.com/brunon80/expo-image-crop/pulls)
 
->Compatible with Expo SDK 36
-
-> Atention: *squareAspect* was removed on this version and will be add in future versions, if you need it, please stay at 0.2.17
-
-
-### Expo Dependences
+### Dependências do Expo
 - yarn add react-native-vector-icons
 - expo install expo-permissions
 - expo install expo-image-picker
 - expo install expo-file-system
 - expo install expo-image-manipulator
 
-## Example
+## Exemplo
 
 ```javascript
 import React from 'react'
@@ -77,44 +58,43 @@ export default class App extends React.Component {
 ```
 
 ## Props
-| Props            | Type     | Default                                                                    | Description                                        |
+
+| Props            | Tipo     | Padrão                                                                    | Descrição                                        |
 |------------------|----------|----------------------------------------------------------------------------|----------------------------------------------------|
-| isVisible        | boolean  | false                                                                      | Show or hide modal with image manipulator UI       |
-| onPictureChoosed | function |                                                                            | Callback where is passed image edited as parameter |
-| photo            | object   | ```{  "uri": string } ```                                       | uri of image to be edited                          |
-| btnTexts         | object   | ```{ "crop": string, "done": string, "processing": string}```    | name for crop, done and processing texts           |
-| onToggleModal    | function |                                                                            | Callback called when modal is dismissed            |
-| borderColor      | string   | #a4a4a4                                                                    | Color for crop mask border                         |
-| allowRotate      | boolean  | true                                                                       | Show rotate option                                 |
-| allowFlip        | boolean  | true                                                                       | Show flip option                                   |
-| saveOptions      | object   | ```{ "compress": number, "format": string, "base64": boolean}``` | A map defining how modified image should be saved  
-| fixedMask      | object   | ```{ "width": number, "height": number }``` | Width and height fixed mask
+| isVisible        | boolean  | false                                                                      | Mostra ou oculta o modal com a UI de manipulação de imagem       |
+| onPictureChoosed | função |                                                                            | Callback onde é passada a imagem editada como parâmetro |
+| photo            | objeto   | ```{  "uri": string } ```                                       | uri da imagem a ser editada                          |
+| btnTexts         | objeto   | ```{ "crop": string, "done": string, "processing": string}```    | nome para os textos de recorte, concluído e processamento           |
+| onToggleModal    | função |                                                                            | Callback chamado quando o modal é fechado            |
+| borderColor      | string   | #a4a4a4                                                                    | Cor da borda da máscara de recorte                         |
+| allowRotate      | boolean  | true                                                                       | Mostra a opção de rotação                                 |
+| allowFlip        | boolean  | true                                                                       | Mostra a opção de espelhamento                                   |
+| saveOptions      | objeto   | ```{ "compress": number, "format": string, "base64": boolean}``` | Um mapa definindo como a imagem modificada deve ser salva  
+| fixedMask      | objeto   | ```{ "width": number, "height": number }``` | Largura e altura da máscara fixa
 
 
-## Return of onPictureChoosed is an object with format:
+## O retorno de onPictureChoosed é um objeto com o formato:
 
 ```javascript
 {
     uri: string,
-    base64: string // undefined if base64 is false on saveOptions prop
+    base64: string // undefined se base64 for false na propriedade saveOptions
 }
 ```
-## Run the example!
-- Clone this repository
+## Execute o exemplo!
+- Clone este repositório
 - cd example/
-- run yarn or npm install
-- enjoy!
-### The animation is fluid even on dev mode!
+- execute yarn ou npm install
+- aproveite!
+### A animação é fluída mesmo no modo de desenvolvimento!
 
 
-## Requirements
-* Use it into Expo app (from expo client, Standalone app or ExpoKit app).
-* Because we need to have access to `ImageManipulator`
+## Requisitos
+* Use-o em um app Expo (do cliente expo, app autônomo ou app ExpoKit).
+* Porque precisamos ter acesso ao `ImageManipulator`
 
-## Features
-* Crop
-* Rotate
-* Flip (Horizontal and Vertical)
+## Funcionalidades
+* Recorte
+* Rotação
+* Espelhamento (Horizontal e Vertical)
 * Base64
-
-## If you have some problem open a issue

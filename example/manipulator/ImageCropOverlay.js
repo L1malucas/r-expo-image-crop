@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { View, PanResponder, Dimensions } from 'react-native'
-
+import React from 'react'
+import { View, PanResponder } from 'react-native'
+/* eslint-disable */
 class ImageCropOverlay extends React.Component {
     state = {
         draggingTL: false,
@@ -22,9 +22,10 @@ class ImageCropOverlay extends React.Component {
         offsetLeft: 0,
     }
 
+
     panResponder = {}
 
-    UNSAFE_componentWillMount() {
+    componentWillMount() {
         this.panResponder = PanResponder.create({
             onStartShouldSetPanResponder: this.handleStartShouldSetPanResponder,
             onPanResponderGrant: this.handlePanResponderGrant,
@@ -45,8 +46,8 @@ class ImageCropOverlay extends React.Component {
         style.width = initialWidth + ((draggingTL || draggingML || draggingBL) ? -offsetLeft : (draggingTM || draggingMM || draggingBM) ? 0 : offsetLeft)
         style.height = initialHeight + ((draggingTL || draggingTM || draggingTR) ? -offsetTop : (draggingML || draggingMM || draggingMR) ? 0 : offsetTop)
 
-        //If ratio specified, modify width and height to maintain ratio
-        if ( ratio && ratio.height && ratio.width) {
+        // If ratio specified, modify width and height to maintain ratio
+        if (ratio && ratio.height && ratio.width) {
             if (style.width * ratio.width > style.height * ratio.height) {
                 style.height = style.width * (ratio.height / ratio.width)
             }
@@ -201,59 +202,59 @@ class ImageCropOverlay extends React.Component {
         const yPos = parseInt((y - initialTop - 64) / (initialHeight / 3))
 
         const index = yPos * 3 + xPos
-        if (index == 0) {
+        if (index === 0) {
             return 'tl'
-        } if (index == 1) {
+        } if (index === 1) {
             return 'tm'
-        } if (index == 2) {
+        } if (index === 2) {
             return 'tr'
-        } if (index == 3) {
+        } if (index === 3) {
             return 'ml'
-        } if (index == 4) {
+        } if (index === 4) {
             return 'mm'
-        } if (index == 5) {
+        } if (index === 5) {
             return 'mr'
-        } if (index == 6) {
+        } if (index === 6) {
             return 'bl'
-        } if (index == 7) {
+        } if (index === 7) {
             return 'bm'
-        } if (index == 8) {
+        } if (index === 8) {
             return 'br'
         }
         return ''
     }
 
     // Should we become active when the user presses down on the square?
-    handleStartShouldSetPanResponder = event => true
+    handleStartShouldSetPanResponder = _event => true
 
     // We were granted responder status! Let's update the UI
     handlePanResponderGrant = (event) => {
         // console.log(event.nativeEvent.locationX + ', ' + event.nativeEvent.locationY)
 
         const selectedItem = this.getTappedItem(event.nativeEvent.pageX, event.nativeEvent.pageY)
-        if (selectedItem == 'tl') {
+        if (selectedItem === 'tl') {
             this.setState({ draggingTL: true })
-        } else if (selectedItem == 'tm') {
+        } else if (selectedItem === 'tm') {
             this.setState({ draggingTM: true })
-        } else if (selectedItem == 'tr') {
+        } else if (selectedItem === 'tr') {
             this.setState({ draggingTR: true })
-        } else if (selectedItem == 'ml') {
+        } else if (selectedItem === 'ml') {
             this.setState({ draggingML: true })
-        } else if (selectedItem == 'mm') {
+        } else if (selectedItem === 'mm') {
             this.setState({ draggingMM: true })
-        } else if (selectedItem == 'mr') {
+        } else if (selectedItem === 'mr') {
             this.setState({ draggingMR: true })
-        } else if (selectedItem == 'bl') {
+        } else if (selectedItem === 'bl') {
             this.setState({ draggingBL: true })
-        } else if (selectedItem == 'bm') {
+        } else if (selectedItem === 'bm') {
             this.setState({ draggingBM: true })
-        } else if (selectedItem == 'br') {
+        } else if (selectedItem === 'br') {
             this.setState({ draggingBR: true })
         }
     }
 
     // Every time the touch/mouse moves
-    handlePanResponderMove = (e, gestureState) => {
+    handlePanResponderMove = (_e, gestureState) => {
         // Keep track of how far we've moved in total (dx and dy)
         this.setState({
             offsetTop: gestureState.dy,
@@ -262,7 +263,7 @@ class ImageCropOverlay extends React.Component {
     }
 
     // When the touch/mouse is lifted
-    handlePanResponderEnd = (e, gestureState) => {
+    handlePanResponderEnd = (_e, gestureState) => {
         const {
             initialTop, initialLeft, initialWidth, initialHeight, draggingTL, draggingTM, draggingTR, draggingML, draggingMM, draggingMR, draggingBL, draggingBM, draggingBR, ratio,
         } = this.state
@@ -283,10 +284,15 @@ class ImageCropOverlay extends React.Component {
 
         state.initialTop = initialTop + ((draggingTL || draggingTM || draggingTR || draggingMM) ? gestureState.dy : 0)
         state.initialLeft = initialLeft + ((draggingTL || draggingML || draggingBL || draggingMM) ? gestureState.dx : 0)
-        state.initialWidth = initialWidth + ((draggingTL || draggingML || draggingBL) ? -gestureState.dx : (draggingTM || draggingMM || draggingBM) ? 0 : gestureState.dx)
-        state.initialHeight = initialHeight + ((draggingTL || draggingTM || draggingTR) ? -gestureState.dy : (draggingML || draggingMM || draggingMR) ? 0 : gestureState.dy)
+        if (draggingTL || draggingTM || draggingTR) {
+            state.initialHeight = initialHeight - gestureState.dy
+        } else if (draggingML || draggingMM || draggingMR) {
+            state.initialHeight = initialHeight
+        } else {
+            state.initialHeight = initialHeight + gestureState.dy
+        }
 
-        if ( ratio && ratio.height && ratio.width) {
+        if (ratio && ratio.height && ratio.width) {
             if (state.initialWidth * ratio.width > state.initialHeight * ratio.height) {
                 state.initialHeight = state.initialWidth * (ratio.height / ratio.width)
             }
